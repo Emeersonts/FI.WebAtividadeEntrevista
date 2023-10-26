@@ -1,0 +1,77 @@
+﻿@model  IEnumerable<WebAtividadeEntrevista.Models.BeneficiarioModel>
+
+@{
+    ViewBag.Title = "Beneficiários";
+}
+<form id="formCadastro" method="post">
+
+    <div class="container">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Beneficiário</h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="CPF">CPF:</label>
+                            <input required="required" type="text" class="form-control" id="CPF" name="CPF" placeholder="Ex.: 01011-100" maxlength="14">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="NOME">Nome:</label>
+                            <input required="required" type="text" class="form-control" id="NOME" name="NOME" placeholder="Ex.: 01011-100" maxlength="50">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-sm btn-success">Incluir</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <table class="table">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.NOME)</th>
+                        <th>@Html.DisplayNameFor(model => model.Cpf)</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.NOME)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Cpf)</td>
+                            <td>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.ActionLink("Alterar", "AlterarBeneficiario", "Cliente", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.ActionLink("Excluir", "ExcluirBeneficiario", "Cliente", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <div id="modal" class="modal fade" role="dialog" />
+
+            </div>
+        </div>
+
+    </div>
+
+</form>
